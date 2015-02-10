@@ -97,8 +97,7 @@ class Home extends CI_Controller {
 
 
 			$gift = $this->gift_model->get_all_gifts($id_venta);
-			var_dump ($gift);
-			die;
+			
 			foreach ($gift AS  $gif)
 			{
 				$message = $this->load->view('template_gift',$gif,TRUE);
