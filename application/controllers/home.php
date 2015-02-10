@@ -70,6 +70,7 @@ class Home extends CI_Controller {
 	public function gracias()
 	{
 		$data = array();
+		$this->session->unset_userdata('cantidad_total');
 		$this->load->view('gracias', $data);
 	}
 
