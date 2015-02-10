@@ -8,10 +8,10 @@
 <body>
 <table width="661" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="229" colspan="3"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>/top.png);" width="656" height="229" usemap="#Map2" border="0" /></td>
+    <td height="229" colspan="3"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>top.png);" width="656" height="229" usemap="#Map2" border="0" /></td>
   </tr>
   <tr>
-    <td width="103" height="286" rowspan="2"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>/left.png);" width="103" height="286" /></td>
+    <td width="103" height="286" rowspan="2"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>left.png);" width="103" height="286" /></td>
     <td width="432" style="background-color:#f0f0ef" height="247">
     <table cellpadding="0" style="background-color:#f0f0ef;" cellspacing="0" height="247" width="432" border="0">
       <tr>
@@ -32,13 +32,13 @@
         <td height="30" align="center"><p style="font-family:Arial, Helvetica, sans-serif; font-size:11px; margin: 0px; color:#8d8d8c;">Válido hasta el 05-10-2015 | Código: AGR45G</p></td>
       </tr>
     </table></td>
-    <td width="126" height="286" rowspan="2"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>/right.png);" width="121" height="286" /></td>
+    <td width="126" height="286" rowspan="2"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>right.png);" width="121" height="286" /></td>
   </tr>
   <tr>
-    <td height="39"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>/bottom-prev.png);" width="432" height="39" /></td>
+    <td height="39"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>bottom-prev.png);" /></td>
   </tr>
   <tr>
-    <td colspan="3"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>/bottom.png);" width="656" height="103" usemap="#Map" border="0" /></td>
+    <td colspan="3"><img src="<?php echo base_url('/assets/template/images/mailing/'); ?>bottom.png);" usemap="#Map" border="0" /></td>
   </tr>
 </table>
 
