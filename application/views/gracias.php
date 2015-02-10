@@ -13,8 +13,7 @@
 </head>
 <body>
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50e5a99710278f46" async="async"></script>
+
 
 
 <div id="wrapper">
@@ -123,5 +122,8 @@
 <script src="<?php echo base_url() . TEMPLATE_ASSETS; ?>js/jquery.validate.min.js"></script>
 <script src="<?php echo base_url() . TEMPLATE_ASSETS; ?>js/contact.js"></script>
 
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50e5a99710278f46" async="async"></script>
 </body>
 </html>
