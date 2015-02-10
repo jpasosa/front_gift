@@ -68,7 +68,7 @@
 
 
             <h2 style="text-align:center;">Recomendá a tus amigos lo fácil que es regalar en Spa Belgrano!</h2>
-            <div style="text-align:center"><!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <div style="text-align:center; height:200px;"><!-- Go to www.addthis.com/dashboard to customize your tools -->
 	    <div style="text-align:center" class="addthis_native_toolbox"></div>
 	    <div>	
 
