@@ -18,7 +18,7 @@
         <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; color:#8d8d8c;">Patricio,</p></td>
       </tr>
       <tr>
-        <td height="80"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; color:#8d8d8c;">Esto es una prueba de un mensaje de 150 caracteres para ser utilizado como base para enviar mediante mail en el sistema de gift certificate de spa bel</p></td>
+        <td height="70"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; color:#8d8d8c;">Esto es una prueba de un mensaje de 150 caracteres para ser utilizado como base para enviar mediante mail en el sistema de gift certificate de spa bel</p></td>
       </tr>
       <tr>
         <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; text-align:right; color:#8d8d8c;">Ximena</p></td>
