@@ -18,18 +18,18 @@
         <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; color:#8d8d8c;"><?php echo $NombreAgasajado;?> ,</p></td>
       </tr>
       <tr>
-        <td height="70"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; color:#8d8d8c;">Esto es una prueba de un mensaje de 150 caracteres para ser utilizado como base para enviar mediante mail en el sistema de gift certificate de spa bel</p></td>
+        <td height="70"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; color:#8d8d8c;"><?php echo $MensajePersonalizado;?></p></td>
       </tr>
       <tr>
-        <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; text-align:right; color:#8d8d8c;">Ximena</p></td>
+        <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; text-align:right; color:#8d8d8c;"><?php echo $NombreComprador;?></p></td>
       </tr>
       <tr>
-        <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; text-align:center; color:#8d8d8c;">Gift Certificate Válido por: Masajes Relajantes y Descontracturantes</p></td>
+        <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; text-align:center; color:#8d8d8c;">Gift Certificate Válido por: <?php echo $Nombre;?></p></td>
       </tr>
       <tr>
         <td height="30" align="center" ><img src="http://ximenapaparella.com.ar/front_gift//assets/template/images/mailing/stars.png" width="81" height="9" /></tr>
       <tr>
-        <td height="30" align="center"><p style="font-family:Arial, Helvetica, sans-serif; font-size:11px; margin: 0px; color:#8d8d8c;">Válido hasta el 05-10-2015 | Código: AGR45G</p></td>
+        <td height="30" align="center"><p style="font-family:Arial, Helvetica, sans-serif; font-size:11px; margin: 0px; color:#8d8d8c;">Válido hasta el <?php echo $fecha_venc;?> | Código: <?php echo $Code;?></p></td>
       </tr>
     </table></td>
     <td width="126" height="286" rowspan="2"><img src="http://ximenapaparella.com.ar/front_gift//assets/template/images/mailing/right.png" width="121" height="286" /></td>
