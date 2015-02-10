@@ -114,9 +114,9 @@ class Home extends CI_Controller {
 						    'charset'   	=>$this->config->item('mail_charset')
 						);
 				$this->email->initialize($config);
-				$this->email->from('SpaBelgrano');
+				$this->email->from('Spa Belgrano');
 				$this->email->to($gif['EmailComprador']);
-				$this->email->subject('Envío Voucher.');
+				$this->email->subject('Spa Belgrano - Gift Certificate');
 				$this->email->message($message);
 
 				$this->email->send();
