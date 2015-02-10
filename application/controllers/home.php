@@ -27,6 +27,8 @@ class Home extends CI_Controller {
 			$gift 	= $this->get_data_post();
 			if ($gift['IdVenta'] == 0) { // PRIMER TARJETA
 				$this->session->set_userdata ('cantidad_total',$gift['cantidad']);
+				$this->session->set_userdata ('nombre_comprador',$gift['NombreComprador']);
+				$this->session->set_userdata ('apellido_comprador',$gift['ApellidoComprador']);
 				$insert_venta = $this->ventas_model->primer_insert(); // Lo va a poner en estado de espera y la fecha de creación, fecha actual.
 				$gift['IdVenta']	= $insert_venta;
 				$insert_gift 	= $this->gift_model->insert($gift);
