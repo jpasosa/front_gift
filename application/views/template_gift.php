@@ -8,7 +8,7 @@
 <body>
 <table width="661" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="229" colspan="3"><img src="http://ximenapaparella.com.ar/front_gift//assets/template/images/mailing/top.png" width="656" height="229" usemap="#Map2" border="0" /></td>
+    <td height="229" style="line-height:0px;" colspan="3"><img src="http://ximenapaparella.com.ar/front_gift//assets/template/images/mailing/top.png" width="656" height="229" usemap="#Map2" border="0" /></td>
   </tr>
   <tr>
     <td width="103" height="286" rowspan="2"><img src="http://ximenapaparella.com.ar/front_gift//assets/template/images/mailing/left.png" width="103" height="286" /></td>
@@ -27,7 +27,7 @@
         <td height="30"><p style="font-family:Arial, Helvetica, sans-serif; margin: 0px; font-size:13px; text-align:center; color:#8d8d8c;">Gift Certificate Válido por: Masajes Relajantes y Descontracturantes</p></td>
       </tr>
       <tr>
-        <td height="30" align="center" ><img src="stars.png" width="81" height="9" /></tr>
+        <td height="30" align="center" ><img src="http://ximenapaparella.com.ar/front_gift//assets/template/images/mailing/stars.png" width="81" height="9" /></tr>
       <tr>
         <td height="30" align="center"><p style="font-family:Arial, Helvetica, sans-serif; font-size:11px; margin: 0px; color:#8d8d8c;">Válido hasta el 05-10-2015 | Código: AGR45G</p></td>
       </tr>
