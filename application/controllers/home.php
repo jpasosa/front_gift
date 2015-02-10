@@ -100,10 +100,22 @@ class Home extends CI_Controller {
 
 			foreach ($gift AS  $gif)
 			{
-				//$message = $this->load->view('template_gift',$gif,TRUE);
-				$this->load->view('template_gift',$gif);
+				$message = $this->load->view('template_gift',$gif,TRUE);
 
-				die();
+
+				//
+				// Debagueo un objeto / arreglo / variable
+				//
+				echo ' <br/> <div style="font-weight: bold; color: green;"> $message: </div> <pre>' ;
+				echo '<div style="color: #3741c6;">';
+				if(is_array($message)) {
+				    print_r($message);
+				}else {
+				var_dump($message);
+				}
+				echo '</div>';
+				echo '</pre>';
+				die('--FIN--DEBUGEO----');
 
 
 				$this->load->library('email');
