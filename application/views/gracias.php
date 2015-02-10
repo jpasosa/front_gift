@@ -13,6 +13,10 @@
 </head>
 <body>
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50e5a99710278f46" async="async"></script>
+
+
 <div id="wrapper">
 
 	<!-- Start Header -->
@@ -63,8 +67,9 @@
             <div class="row">
 
 
-            <h2 style="text-align:center;">Pato yo aprovecharía este espacio para poner alguna imagen de alguna promoción!</h2>
-            <img style="border:2px solid #6c1927; text-align:center; margin-left:100px;" src="<?php echo base_url() . TEMPLATE_ASSETS; ?>images/baner_cronometro-930x300.png" />
+            <h2 style="text-align:center;">Recomendá a tus amigos lo fácil que es regalar en Spa Belgrano!</h2>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+	    <div class="addthis_native_toolbox"></div>
 
 
              </div>
