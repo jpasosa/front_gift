@@ -97,7 +97,7 @@ class Home extends CI_Controller {
 
 
 			$gift = $this->gift_model->get_all_gifts($id_venta);
-
+			$gift['fecha_venc']= date('d-m-Y', strtotime("+90 days"));
 			foreach ($gift AS  $gif)
 			{
 				$message = $this->load->view('template_gift',$gif,TRUE);
