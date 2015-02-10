@@ -55,8 +55,7 @@
           <div class="row">
  	<div style="margin-bottom:30px;">
    <h1 style="text-align:center;">Muchas gracias <?php echo $this->session->userdata('nombre_comprador'); ?> <?php echo $this->session->userdata('apellido_comprador'); ?>!</h1>
-   <p style="text-align:center; color:#555;">Tu Gift ha sido enviado por correo electrónico para que puedas reenviarlo a tu agasajado.<br>
-     Si no recibiste el gift, por favor corroborá la carpeta de correo no deseado, o envianos un mail a <a class="link_sociales" href="mailto:info@spabelgrano.com">info@spabelgrano.com</a>
+   <p style="text-align:center; color:#555;">Has recibido un correo para enviar a tu agasajado. Si no lo recibiste envia un mail a <a class="link_sociales" href="mailto:recepcion@spabelgrano.com">recepcion@spabelgrano.com, y te lo enviaremos en instantes. <br /> Recordá que el Gift Certificate tiene una válidez de 90 días.</a>
    </p>
    <hr style="color:#999;" />
    </div>
