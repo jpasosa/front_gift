@@ -97,10 +97,15 @@ class Home extends CI_Controller {
 
 
 			$gift = $this->gift_model->get_all_gifts($id_venta);
-			
+
 			foreach ($gift AS  $gif)
 			{
-				$message = $this->load->view('template_gift',$gif,TRUE);
+				//$message = $this->load->view('template_gift',$gif,TRUE);
+				$this->load->view('template_gift',$gif);
+
+				die();
+
+
 				$this->load->library('email');
 				$this->load->config('data_mail');
 				$config = array(
