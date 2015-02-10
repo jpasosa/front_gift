@@ -13,6 +13,9 @@
 </head>
 <body>
 
+
+
+
 <div id="wrapper">
 
 	<!-- Start Header -->
@@ -51,9 +54,8 @@
 
           <div class="row">
  	<div style="margin-bottom:30px;">
-   <h1 style="text-align:center;">Muchas gracias!</h1>
-   <p style="text-align:center; color:#555;">Tu Gift ha sido enviado por correo electrónico para que puedas reenviarlo a tu agasajado.<br>
-     Si no recibiste el gift, por favor corroborá la carpeta de correo no deseado, o envianos un mail a <a class="link_sociales" href="mailto:info@spabelgrano.com">info@spabelgrano.com</a>
+   <h1 style="text-align:center;">Muchas gracias <?php echo $this->session->userdata('nombre_comprador'); ?> <?php echo $this->session->userdata('apellido_comprador'); ?>!</h1>
+   <p style="text-align:center; color:#555;">Has recibido un correo para enviar a tu agasajado. Si no lo recibiste envia un mail a <a class="link_sociales" href="mailto:recepcion@spabelgrano.com">recepcion@spabelgrano.com, y te lo enviaremos en instantes. <br /> Recordá que el Gift Certificate tiene una válidez de 90 días.</a>
    </p>
    <hr style="color:#999;" />
    </div>
@@ -63,9 +65,10 @@
             <div class="row">
 
 
-            <h2 style="text-align:center;">Pato yo aprovecharía este espacio para poner alguna imagen de alguna promoción!</h2>
-            <img style="border:2px solid #6c1927; text-align:center; margin-left:100px;" src="<?php echo base_url() . TEMPLATE_ASSETS; ?>images/baner_cronometro-930x300.png" />
-
+            <h2 style="text-align:center;">Recomendá a tus amigos lo fácil que es regalar en Spa Belgrano!</h2>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+	    <div style="text-align: center; min-height: 320px; /* position: absolute; */ padding-top: 40px; margin: 0; padding-left: 32%;" class="addthis_native_toolbox"></div>
+	    	
 
              </div>
 
@@ -118,5 +121,8 @@
 <script src="<?php echo base_url() . TEMPLATE_ASSETS; ?>js/jquery.validate.min.js"></script>
 <script src="<?php echo base_url() . TEMPLATE_ASSETS; ?>js/contact.js"></script>
 
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50e5a99710278f46" async="async"></script>
 </body>
 </html>

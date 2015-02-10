@@ -84,8 +84,8 @@
 									<input type="hidden" name="IdVenta" value="<?php if (isset($gift['IdVenta'])) {echo $gift['IdVenta'];}else{echo '0';} ?>" />
 									<div class="form-row">
 										<?php if (isset($gift['cantidad']) && $gift['cantidad'] != -1): ?>
-											<h4><strong>Te faltan <?php echo $gift['cantidad']; ?> Vouchers para enviar.</strong></h4>
-											<a href="<?php echo base_url('home'); ?>" style="color: #6c1927;"> Quiero volver a empezar todo </a>
+											<h4><strong>Te faltan <?php echo $gift['cantidad']; ?> Voucher(s) de <?php echo $this->session->userdata('cantidad_total'); ?> para enviar a tu agasajado.</strong></h4>
+											
 										<?php else: ?>
 											<h4> Seleccioná la cantidad de gifts que vas a regalar: </h4>
 											<select required id="cantidad" name="cantidad" title="campo obligatorio" <?php if (isset($gift['IdVenta'])): echo 'disabled'; endif; ?> >
