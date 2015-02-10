@@ -49,12 +49,16 @@ class Gift_model extends CI_Model
 	public function get_all_gifts( $id_venta )
 	{
 		try {
-
-			$query = $this->db->get_where('Voucher', array('IdVenta'=>$id_venta));
-
-			$result = $query->result_array();
-
-			return $result;
+			
+			$this->db->select('*');
+                       $this->db->from('Voucher');
+                       $this->db->join('Servicio', 'Voucher.IdServicio = Servicio.IdServicio');
+                       $this->db->where('Voucher.IdVenta', $id_venta);
+                       $this->db->order_by("Voucher.IdVoucher", "desc");
+                       $q                                 = $this->db->get();
+                       $gifts         = $q->result_array();
+                       
+			return $gifts;
 
 		} catch (Exception $e) {
 			echo $e->getMessage();
