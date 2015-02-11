@@ -110,7 +110,7 @@ class Home extends CI_Controller {
 		// 	log_message('error', print_r($paymentInfo, TRUE) );
 
 		// }
-		diee('pepe');
+		error_reporting(E_ALL);
 
 		$id = $this->input->post("id");
 
@@ -132,6 +132,9 @@ class Home extends CI_Controller {
 		echo '</div>';
 		echo '</pre>';
 		die('--FIN--DEBUGEO----');
+
+
+		die('pepe');
 
 
 		$debug_info = print_r($paymentInfo, TRUE);
