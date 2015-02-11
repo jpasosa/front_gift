@@ -71,16 +71,16 @@ class Home extends CI_Controller {
 
 
 					// Debe capturar el estado que devuelve mercado pago y completarlo en el estado de la venta.
-					$status_mp = 3; // harckodeo estado, le pongo ACEPTADO.
-					$estado_mp = $this->ventas_model->set_estado_mp($gift['IdVenta'], $status_mp);
-					$send_mails = $this->_send_mails( $gift['IdVenta'] );
-					if ( $send_mails ) {
-						$this->session->set_flashdata('success','Los Vouchers se han cargado y enviado con éxito');
-						redirect('home/gracias');
-					} else {
-						$this->session->set_flashdata('success','Los Vouchers no se pudieron enviar.');
-					}
-					redirect('home');
+					// $status_mp = 3; // harckodeo estado, le pongo ACEPTADO.
+					// $estado_mp = $this->ventas_model->set_estado_mp($gift['IdVenta'], $status_mp);
+					// $send_mails = $this->_send_mails( $gift['IdVenta'] );
+					// if ( $send_mails ) {
+					// 	$this->session->set_flashdata('success','Los Vouchers se han cargado y enviado con éxito');
+					// 	redirect('home/gracias');
+					// } else {
+					// 	$this->session->set_flashdata('success','Los Vouchers no se pudieron enviar.');
+					// }
+					// redirect('home');
 				}
 			}
 
@@ -96,6 +96,48 @@ class Home extends CI_Controller {
 		$this->load->view('home', $data);
 	}
 
+	/**
+	 * Recibo los datos que devuelve mercadopago
+	 **/
+	public function mp()
+	{
+		// if($this->input->server('REQUEST_METHOD') == 'POST')
+		// {
+		// 	$paymentInfo = $this->mercadopago->get_payment_info ($_GET["id"]);
+		// 	header ("", true, $paymentInfo["status"]);
+		// 	print_r ($paymentInfo);
+
+		// 	log_message('error', print_r($paymentInfo, TRUE) );
+
+		// }
+
+		$id = $this->input->post("id");
+
+		log_message('error', $id);
+
+		$paymentInfo = $this->mercadopago->get_payment_info($id);
+
+
+		//
+		// Debagueo un objeto / arreglo / variable
+		//
+		echo ' <br/> <div style="font-weight: bold; color: green;"> $paymentInfo: </div> <pre>' ;
+		echo '<div style="color: #3741c6;">';
+		if(is_array($paymentInfo)) {
+		    print_r($paymentInfo);
+		}else {
+		var_dump($paymentInfo);
+		}
+		echo '</div>';
+		echo '</pre>';
+		die('--FIN--DEBUGEO----');
+
+
+		$debug_info = print_r($paymentInfo, TRUE);
+		log_message('error', 'informacion: ' . $debug_info);
+		log_message('error', 'leer arriba');
+
+	}
 
 	public function gracias()
 	{
