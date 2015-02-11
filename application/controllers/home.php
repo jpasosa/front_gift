@@ -112,8 +112,6 @@ class Home extends CI_Controller {
 		// }
 
 
-		die();
-
 		$id = $this->input->post("id");
 
 		log_message('error', $id);
