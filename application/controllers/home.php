@@ -10,6 +10,11 @@ class Home extends CI_Controller {
 		$this->load->model('servicios_model');
 		$this->load->model('gift_model');
 		$this->load->model('ventas_model');
+
+		// MERCADOPAGO
+		$this->config->load("mercadopago", TRUE);
+    		$config = $this->config->item('mercadopago');
+    		$this->load->library('Mercadopago', $config['mercadopago']);
 	}
 
 
@@ -42,6 +47,29 @@ class Home extends CI_Controller {
 				$gift = $this->_limpiar_gift($gift); // borra los datos que tiene que volver a completar en el siguiente voucher, por ejemplo nombre agasajado, mensaje, etc.
 				if ( $gift['cantidad'] == 0) // Llegó al último Voucher debe enviar el email y cambiar los estados.
 				{
+
+					// Cargo para mercadopago
+					$data['compra_confirmada'] 	= TRUE;
+					$preference = array(
+									"items" => array(
+										array(
+												"title" 		=> "sdk-php",
+												"quantity" 	=> 1,
+												"currency_id" => "ARS",
+												"unit_price" => 2
+												)
+										),
+									"external_reference" => 23
+									);
+					$this->mercadopago->sandbox_mode('TRUE');
+
+					$preferenceResult = $this->mercadopago->create_preference($preference);
+					//Obtenemos el access_token
+					$accessToken = $this->mercadopago->get_access_token();
+					$data['preferenceResult'] = $preferenceResult;
+					// FIN mercadopago
+
+
 					// Debe capturar el estado que devuelve mercado pago y completarlo en el estado de la venta.
 					$status_mp = 3; // harckodeo estado, le pongo ACEPTADO.
 					$estado_mp = $this->ventas_model->set_estado_mp($gift['IdVenta'], $status_mp);
@@ -97,7 +125,7 @@ class Home extends CI_Controller {
 
 
 			$gift = $this->gift_model->get_all_gifts($id_venta);
-		
+
 			foreach ($gift AS $gif)
 			{
 				$gif['fecha_venc']= date('d-m-Y', strtotime("+90 days"));
