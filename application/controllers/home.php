@@ -110,7 +110,7 @@ class Home extends CI_Controller {
 		// 	log_message('error', print_r($paymentInfo, TRUE) );
 
 		// }
-		die('pepe');
+		diee('pepe');
 
 		$id = $this->input->post("id");
 
