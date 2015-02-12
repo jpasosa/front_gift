@@ -170,8 +170,8 @@
 
 
 			<?php if (isset($compra_confirmada) && $compra_confirmada): ?>
-				<a href="<?php echo $preferenceResult["response"]["sandbox_init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a>
-				<!-- <a href="<?php //echo $preferenceResult["response"]["init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a> -->
+				<!-- <a href="<?php echo $preferenceResult["response"]["sandbox_init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a> -->
+				<a href="<?php //echo $preferenceResult["response"]["init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a>
 					<script type="text/javascript" src="http://mp-tools.mlstatic.com/buttons/render.js"></script>
 				</div>
 			<?php endif; ?>

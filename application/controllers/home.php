@@ -61,29 +61,18 @@ class Home extends CI_Controller {
 										),
 									"external_reference" => 23,
 									"back_urls" => array(
-														"success" => 'http://front_gift/home/gracias'
+														// "success" => 'http://front_gift/home/gracias'
+														"success" => 'http://ximenapaparella.com.ar/front_gift/home/gracias'
 														)
 										);
 
-					$this->mercadopago->sandbox_mode('TRUE');
+					//$this->mercadopago->sandbox_mode('TRUE');
 
 					$preferenceResult = $this->mercadopago->create_preference($preference);
 					//Obtenemos el access_token
 					$accessToken = $this->mercadopago->get_access_token();
 
-					//
-					// Debagueo un objeto / arreglo / variable
-					//
-					echo ' <br/> <div style="font-weight: bold; color: green;"> $accessToken: </div> <pre>' ;
-					echo '<div style="color: #3741c6;">';
-					if(is_array($accessToken)) {
-					    print_r($accessToken);
-					}else {
-					var_dump($accessToken);
-					}
-					echo '</div>';
-					echo '</pre>';
-					// die('--FIN--DEBUGEO----');
+
 
 					$data['preferenceResult'] = $preferenceResult;
 					// FIN mercadopago
