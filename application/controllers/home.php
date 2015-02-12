@@ -174,28 +174,13 @@ class Home extends CI_Controller {
 
 	public function gracias()
 	{
-		$data = array();
+		// $data = array();
 
-		$data_mp['collection_id'] = $this->input->get('collection_id');
-		$data_mp['collection_status'] = $this->input->get('collection_status');
-		$data_mp['preference_id'] = $this->input->get('preference_id');
-		$data_mp['external_reference'] = $this->input->get('external_reference');
-		$data_mp['payment_type'] = $this->input->get('payment_type');
-
-		//
-		// Debagueo un objeto / arreglo / variable
-		//
-		echo ' <br/> <div style="font-weight: bold; color: green;"> $data_mp: </div> <pre>' ;
-		echo '<div style="color: #3741c6;">';
-		if(is_array($data_mp)) {
-		    print_r($data_mp);
-		}else {
-		var_dump($data_mp);
-		}
-		echo '</div>';
-		echo '</pre>';
-		die('--FIN--DEBUGEO----');
-
+		// $data_mp['collection_id'] = $this->input->get('collection_id');
+		// $data_mp['collection_status'] = $this->input->get('collection_status');
+		// $data_mp['preference_id'] = $this->input->get('preference_id');
+		// $data_mp['external_reference'] = $this->input->get('external_reference');
+		// $data_mp['payment_type'] = $this->input->get('payment_type');
 
 		$this->session->unset_userdata('cantidad_total');
 		$this->load->view('gracias', $data);
