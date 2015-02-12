@@ -146,16 +146,21 @@
 									<div class="form-row">
 										<textarea name="MensajePersonalizado" id="mensaje" required  disabled title="campo obligatorio" maxlength="150" placeholder="Mensaje personalizado (Hasta 150 caracteres)"><?php if (isset($gift['MensajePersonalizado'])): echo $gift['MensajePersonalizado'];endif; ?></textarea>
 									</div>
-										<?php if (isset($gift['cantidad']) && $gift['cantidad'] == 1): ?> <!-- YA ES EL ULTIMO VOUCHER Y VA A COMPRAR -->
+										<?php if (isset($gift['cantidad']) && $gift['cantidad'] == 1 && !isset($preferenceResult)): ?> <!-- YA ES EL ULTIMO VOUCHER Y VA A COMPRAR -->
 											<div class="form-row">
-												<input  type="submit" name="comprar" value="Comprar Gift" class="btn">
+												<input  type="submit" name="comprar" value="Confirmar" class="btn">
 											</div>
-										<?php else: ?>  <!-- SIGUE AVANZANDO EN LOS VOUCHERS -->
+										<?php elseif ( !isset($preferenceResult)): ?>  <!-- SIGUE AVANZANDO EN LOS VOUCHERS -->
 											<div class="form-row">
 												<input id="continuar"  style="display: none;" type="submit" name="continuar" value="Guardar y continuar" disabled class="btn">
 											</div>
 											<div class="form-row">
-												<input id="comprar" style="display: none;" type="submit" name="comprar" value="Comprar Gift" disabled class="btn">
+												<input id="comprar" style="display: none;" type="submit" name="comprar" value="Confirmar" disabled class="btn">
+											</div>
+										<?php else: ?>
+											<div class="form-row">
+												<a href="<?php echo $preferenceResult["response"]["init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a>
+												<script type="text/javascript" src="http://mp-tools.mlstatic.com/buttons/render.js"></script>
 											</div>
 										<?php endif; ?>
 								</form>
@@ -169,12 +174,6 @@
 			<!-- FIN GIFT DATOS -->
 
 
-			<?php if (isset($compra_confirmada) && $compra_confirmada): ?>
-				<!-- <a href="<?php echo $preferenceResult["response"]["sandbox_init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a> -->
-				<a href="<?php echo $preferenceResult["response"]["init_point"]; ?>" name="MP-Checkout" class="orange-ar-m-sq-arall">Pay</a>
-					<script type="text/javascript" src="http://mp-tools.mlstatic.com/buttons/render.js"></script>
-				</div>
-			<?php endif; ?>
 
 
 			<!-- COMIENZO GIFT DISEÑO -->

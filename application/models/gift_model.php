@@ -46,10 +46,54 @@ class Gift_model extends CI_Model
 
 	}
 
+
+	/**
+	 * Nos devuelve un array que necesita mercadopago para controlar por producto
+	 *
+	 * @team 	Allytech
+	 * @author 	Juan Pablo Sosa <jpasosa@gmail.com>
+	 * @date 	12-feb-2015
+	 *
+	 * @param       int  		id_venta
+	 * @return      array 	que necesita mercadopago para contabilizar todo.
+	 **/
+	public function get_gifts_for_mc( $id_venta )
+	{
+		try {
+
+			$gifts = $this->get_all_gifts($id_venta);
+
+
+			foreach ($gifts AS $k=>$gift_mp)
+			{
+				$gifts[$k]['title'] = $gift_mp['Nombre'];
+				$gifts[$k]['quantity'] = 1;
+				$gifts[$k]['currency_id'] = 'ARS';
+				$gifts[$k]['unit_price'] = (float)$gift_mp['Valor'];
+				unset($gifts[$k]['IdVoucher'], $gifts[$k]['IdServicio'], $gifts[$k]['IdVenta'], $gifts[$k]['NombreComprador'], $gifts[$k]['ApellidoComprador'], $gifts[$k]['EmailComprador'], $gifts[$k]['TelefonoComprador'],
+						$gifts[$k]['NombreAgasajado'], $gifts[$k]['ApellidoAgasajado'], $gifts[$k]['MensajePersonalizado'], $gifts[$k]['Log'], $gifts[$k]['FechaCreacion'], $gifts[$k]['Code'], $gifts[$k]['Nombre'], $gifts[$k]['Valor'] );
+			}
+
+			// foreach ($gifts AS $k=>$evaluate) {
+			// 	if ( (empty($evaluate)) ) {
+			// 		unset($gifts[$k]);
+			// 	}
+			// }
+
+
+
+			return $gifts;
+
+
+		} catch (Exception $e) {
+			echo $e->getMessage();
+			exit(1);
+		}
+	}
 	public function get_all_gifts( $id_venta )
 	{
 		try {
-			
+
 			$this->db->select('*');
                        $this->db->from('Voucher');
                        $this->db->join('Servicio', 'Voucher.IdServicio = Servicio.IdServicio');
@@ -57,7 +101,7 @@ class Gift_model extends CI_Model
                        $this->db->order_by("Voucher.IdVoucher", "desc");
                        $q                                 = $this->db->get();
                        $gifts         = $q->result_array();
-                       
+
 			return $gifts;
 
 		} catch (Exception $e) {

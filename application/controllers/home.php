@@ -31,6 +31,7 @@ class Home extends CI_Controller {
 		{
 			$gift 	= $this->get_data_post();
 			if ($gift['IdVenta'] == 0) { // PRIMER TARJETA
+
 				$this->session->set_userdata ('cantidad_total',$gift['cantidad']);
 				$this->session->set_userdata ('nombre_comprador',$gift['NombreComprador']);
 				$this->session->set_userdata ('apellido_comprador',$gift['ApellidoComprador']);
@@ -48,48 +49,22 @@ class Home extends CI_Controller {
 				if ( $gift['cantidad'] == 0) // Llegó al último Voucher debe enviar el email y cambiar los estados.
 				{
 
-					// Cargo para mercadopago
-					$data['compra_confirmada'] 	= TRUE;
-					$preference = array(
-									"items" => array(
-										array(
-												"title" 		=> "sdk-php",
-												"quantity" 	=> 1,
-												"currency_id" => "ARS",
-												"unit_price" => 2
-												)
-										),
-									"external_reference" => 23,
-									"back_urls" => array(
-														// "success" => 'http://front_gift/home/gracias'
-														"success" => 'http://ximenapaparella.com.ar/front_gift/home/gracias'
-														)
-										);
 
+					// MERCADOPAGO
+					// Recogo todos los datos para enviar por mercadopago
+					$items = $this->gift_model->get_gifts_for_mc($gift['IdVenta']);
+					$preference['items'] 				= $items;
+					$preference['external_reference'] 	= 	25;
+					$preference['back_urls'] 			= array("success" => 'http://ximenapaparella.com.ar/front_gift/home/gracias');
 					//$this->mercadopago->sandbox_mode('TRUE');
-
 					$preferenceResult = $this->mercadopago->create_preference($preference);
-
 					//Obtenemos el access_token
 					$accessToken = $this->mercadopago->get_access_token();
-
-
-
 					$data['preferenceResult'] = $preferenceResult;
 					// FIN mercadopago
 
 
-					// Debe capturar el estado que devuelve mercado pago y completarlo en el estado de la venta.
-					// $status_mp = 3; // harckodeo estado, le pongo ACEPTADO.
-					// $estado_mp = $this->ventas_model->set_estado_mp($gift['IdVenta'], $status_mp);
-					// $send_mails = $this->_send_mails( $gift['IdVenta'] );
-					// if ( $send_mails ) {
-					// 	$this->session->set_flashdata('success','Los Vouchers se han cargado y enviado con éxito');
-					// 	redirect('home/gracias');
-					// } else {
-					// 	$this->session->set_flashdata('success','Los Vouchers no se pudieron enviar.');
-					// }
-					// redirect('home');
+
 				}
 			}
 
@@ -117,17 +92,7 @@ class Home extends CI_Controller {
     		$this->load->library('Mercadopago', $config['mercadopago']);
 
 
-		// header("Content-type: text/plain");
-
-
-
-
 		$payment_info = $this->mercadopago->get_payment_info ($_GET["id"]);
-
-		// $mp = new MP("8657008936637658", "hB12jYmvfVSFVYd5SLgA7JNfGtNQzc2B");
-
-		// Get the payment reported by the IPN. Glossary of attributes response in https://developers.mercadopago.com
-		// $payment_info = $mp->get_payment_info($_GET["id"]);
 
 		// Show payment information
 		if ($payment_info["status"] == 200)
@@ -138,50 +103,55 @@ class Home extends CI_Controller {
 			$data_mp['fecha_pago']       		= $payment_info["response"]["collection"]["date_created"];
 			$data_mp['fecha_estatus']    		= $payment_info["response"]["collection"]["last_modified"];
 			$data_mp['cod_carrit']     			= $payment_info["response"]["collection"]["order_id"];
+			$data_mp['external_reference']     	= $payment_info["response"]["collection"]["external_reference"];
 			$data_mp['estatus']          			= $payment_info["response"]["collection"]["status"];
 			$data_mp['monto']            			= $payment_info["response"]["collection"]["transaction_amount"];
 			$data_mp['email']            			= $payment_info["response"]["collection"]["payer"]["email"];
 			$data_mp['ci']               			= $payment_info["response"]["collection"]["payer"]["identification"]["number"];
-			//$objcarrito->insertar_pago() ;
 		}
 
-		log_message('error',  'pruebo si entra aca');
-		// header ("", true, $paymentInfo["status"]);
-		$error_pay = print_r($payment_info, TRUE);
-		log_message('error',  $error_pay);
+
+		log_message('info',  $payment_info);
+
+		$id_venta = $data_mp['external_reference'];
+
 
 		if ( $data_mp['estatus'] == 'approved') {
-			log_message('error',  'seteo las bases está aprobada la transacción. . ');
+			// Debe capturar el estado que devuelve mercado pago y completarlo en el estado de la venta.
+			$status_mp = 3; // ingreso ACEPTADO por que está devolviendo approved el array de mercadopago.
+			$estado_mp = $this->ventas_model->set_estado_mp($id_venta, $status_mp);
+			$send_mails = $this->_send_mails( $id_venta );
+			// if ( $send_mails ) {
+			// 	$this->session->set_flashdata('success','Los Vouchers se han cargado y enviado con éxito');
+			// 	redirect('home/gracias');
+			// } else {
+			// 	$this->session->set_flashdata('success','Los Vouchers no se pudieron enviar.');
+			// }
+			// redirect('home');
+
+		} else { // Por algún motivo no fue aceptada.
+			$status_mp = 4; // estado ERROR por que la devolucion de MP fue de error.
+			$estado_mp = $this->ventas_model->set_estado_mp($id_venta, $status_mp);
 		}
+
+
+
+
 		// print_r ($paymentInfo);
-
-
-
 		//Respuesta: {"protocolVersion":{"major":1,"minor":1,"protocol":"HTTP"},"reasonPhrase":"OK","statusCode":200}
-
 		// if($this->input->server('REQUEST_METHOD') == 'POST')
 		// {
 		// 	$paymentInfo = $this->mercadopago->get_payment_info ($_GET["id"]);
 		// 	header ("", true, $paymentInfo["status"]);
 		// 	print_r ($paymentInfo);
-
-
 		// }
 		// // error_reporting(E_ALL);
-
 		// $id = $this->input->post("id");
-
 		// log_message('error', $id);
-
 		// $paymentInfo = $this->mercadopago->get_payment_info($id);
-
-
-
-
-
-
-
 	}
+
+
 
 	public function test_log()
 	{
