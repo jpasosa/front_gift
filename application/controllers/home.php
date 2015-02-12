@@ -59,13 +59,31 @@ class Home extends CI_Controller {
 												"unit_price" => 2
 												)
 										),
-									"external_reference" => 23
-									);
+									"external_reference" => 23,
+									"back_urls" => array(
+														"success" => 'http://front_gift/home/gracias'
+														)
+										);
+
 					$this->mercadopago->sandbox_mode('TRUE');
 
 					$preferenceResult = $this->mercadopago->create_preference($preference);
 					//Obtenemos el access_token
 					$accessToken = $this->mercadopago->get_access_token();
+
+					//
+					// Debagueo un objeto / arreglo / variable
+					//
+					echo ' <br/> <div style="font-weight: bold; color: green;"> $accessToken: </div> <pre>' ;
+					echo '<div style="color: #3741c6;">';
+					if(is_array($accessToken)) {
+					    print_r($accessToken);
+					}else {
+					var_dump($accessToken);
+					}
+					echo '</div>';
+					echo '</pre>';
+					// die('--FIN--DEBUGEO----');
 
 					$data['preferenceResult'] = $preferenceResult;
 					// FIN mercadopago
@@ -103,13 +121,53 @@ class Home extends CI_Controller {
 	public function mp()
 	{
 
-		header("Content-type: text/plain");
 
-		$paymentInfo = $this->mercadopago->get_payment_info ($_GET["id"]);
+		$this->config->load("mercadopago", TRUE);
+    		$config = $this->config->item('mercadopago');
+    		$this->load->library('Mercadopago', $config['mercadopago']);
 
-		header ("", true, $paymentInfo["status"]);
 
-		print_r ($paymentInfo);
+		// header("Content-type: text/plain");
+
+
+
+
+		$payment_info = $this->mercadopago->get_payment_info ($_GET["id"]);
+
+		// $mp = new MP("8657008936637658", "hB12jYmvfVSFVYd5SLgA7JNfGtNQzc2B");
+
+		// Get the payment reported by the IPN. Glossary of attributes response in https://developers.mercadopago.com
+		// $payment_info = $mp->get_payment_info($_GET["id"]);
+
+		// Show payment information
+		if ($payment_info["status"] == 200)
+		{
+			print_r($payment_info["response"]);
+
+			$data_mp['id_pago']          			= $payment_info["response"]["collection"]["id"];
+			$data_mp['fecha_pago']       		= $payment_info["response"]["collection"]["date_created"];
+			$data_mp['fecha_estatus']    		= $payment_info["response"]["collection"]["last_modified"];
+			$data_mp['cod_carrit']     			= $payment_info["response"]["collection"]["order_id"];
+			$data_mp['estatus']          			= $payment_info["response"]["collection"]["status"];
+			$data_mp['monto']            			= $payment_info["response"]["collection"]["transaction_amount"];
+			$data_mp['email']            			= $payment_info["response"]["collection"]["payer"]["email"];
+			$data_mp['ci']               			= $payment_info["response"]["collection"]["payer"]["identification"]["number"];
+			//$objcarrito->insertar_pago() ;
+		}
+
+		log_message('error',  'pruebo si entra aca');
+		// header ("", true, $paymentInfo["status"]);
+		$error_pay = print_r($payment_info, TRUE);
+		log_message('error',  $error_pay);
+
+		if ( $data_mp['estatus'] == 'approved') {
+			log_message('error',  'seteo las bases está aprobada la transacción. . ');
+		}
+		// print_r ($paymentInfo);
+
+
+
+		//Respuesta: {"protocolVersion":{"major":1,"minor":1,"protocol":"HTTP"},"reasonPhrase":"OK","statusCode":200}
 
 		// if($this->input->server('REQUEST_METHOD') == 'POST')
 		// {
@@ -117,7 +175,6 @@ class Home extends CI_Controller {
 		// 	header ("", true, $paymentInfo["status"]);
 		// 	print_r ($paymentInfo);
 
-		// 	log_message('error', print_r($paymentInfo, TRUE) );
 
 		// }
 		// // error_reporting(E_ALL);
@@ -132,17 +189,17 @@ class Home extends CI_Controller {
 
 
 
-		// $debug_info = print_r($paymentInfo, TRUE);
-		// log_message('error', 'informacion: ' . $debug_info);
-		// log_message('error', 'leer arriba');
+
 
 	}
 
 	public function test_log()
 	{
-		log_message('error', 'informacion: ' . 'sarara');
-		log_message('error', 'leer arriba');
+
+
+		log_message('info',  'testeo que entre correctamente en los logs. . ');
 		die();
+
 	}
 
 	public function viene_mp()
@@ -153,6 +210,28 @@ class Home extends CI_Controller {
 	public function gracias()
 	{
 		$data = array();
+
+		$data_mp['collection_id'] = $this->input->get('collection_id');
+		$data_mp['collection_status'] = $this->input->get('collection_status');
+		$data_mp['preference_id'] = $this->input->get('preference_id');
+		$data_mp['external_reference'] = $this->input->get('external_reference');
+		$data_mp['payment_type'] = $this->input->get('payment_type');
+
+		//
+		// Debagueo un objeto / arreglo / variable
+		//
+		echo ' <br/> <div style="font-weight: bold; color: green;"> $data_mp: </div> <pre>' ;
+		echo '<div style="color: #3741c6;">';
+		if(is_array($data_mp)) {
+		    print_r($data_mp);
+		}else {
+		var_dump($data_mp);
+		}
+		echo '</div>';
+		echo '</pre>';
+		die('--FIN--DEBUGEO----');
+
+
 		$this->session->unset_userdata('cantidad_total');
 		$this->load->view('gracias', $data);
 	}
