@@ -67,20 +67,6 @@ class Home extends CI_Controller {
 					//Obtenemos el access_token
 					$accessToken = $this->mercadopago->get_access_token();
 
-					//
-					// Debagueo un objeto / arreglo / variable
-					//
-					echo ' <br/> <div style="font-weight: bold; color: green;"> $accessToken: </div> <pre>' ;
-					echo '<div style="color: #3741c6;">';
-					if(is_array($accessToken)) {
-					    print_r($accessToken);
-					}else {
-					var_dump($accessToken);
-					}
-					echo '</div>';
-					echo '</pre>';
-					die('--FIN--DEBUGEO----');
-
 					$data['preferenceResult'] = $preferenceResult;
 					// FIN mercadopago
 
@@ -116,6 +102,15 @@ class Home extends CI_Controller {
 	 **/
 	public function mp()
 	{
+
+		header("Content-type: text/plain");
+
+		$paymentInfo = $this->mercadopago->get_payment_info ($_GET["id"]);
+
+		header ("", true, $paymentInfo["status"]);
+
+		print_r ($paymentInfo);
+
 		// if($this->input->server('REQUEST_METHOD') == 'POST')
 		// {
 		// 	$paymentInfo = $this->mercadopago->get_payment_info ($_GET["id"]);
@@ -125,37 +120,34 @@ class Home extends CI_Controller {
 		// 	log_message('error', print_r($paymentInfo, TRUE) );
 
 		// }
-		error_reporting(E_ALL);
+		// // error_reporting(E_ALL);
 
-		$id = $this->input->post("id");
+		// $id = $this->input->post("id");
 
-		log_message('error', $id);
+		// log_message('error', $id);
 
-		$paymentInfo = $this->mercadopago->get_payment_info($id);
-
-
-		//
-		// Debagueo un objeto / arreglo / variable
-		//
-		echo ' <br/> <div style="font-weight: bold; color: green;"> $paymentInfo: </div> <pre>' ;
-		echo '<div style="color: #3741c6;">';
-		if(is_array($paymentInfo)) {
-		    print_r($paymentInfo);
-		}else {
-		var_dump($paymentInfo);
-		}
-		echo '</div>';
-		echo '</pre>';
-		die('--FIN--DEBUGEO----');
+		// $paymentInfo = $this->mercadopago->get_payment_info($id);
 
 
-		die('pepe');
 
 
-		$debug_info = print_r($paymentInfo, TRUE);
-		log_message('error', 'informacion: ' . $debug_info);
+
+		// $debug_info = print_r($paymentInfo, TRUE);
+		// log_message('error', 'informacion: ' . $debug_info);
+		// log_message('error', 'leer arriba');
+
+	}
+
+	public function test_log()
+	{
+		log_message('error', 'informacion: ' . 'sarara');
 		log_message('error', 'leer arriba');
+		die();
+	}
 
+	public function viene_mp()
+	{
+		die('datos de mp');
 	}
 
 	public function gracias()
