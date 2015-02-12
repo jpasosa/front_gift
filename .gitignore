@@ -3,6 +3,8 @@ application/config/database.php
 application/config/constants.php
 application/config/data_mail.php
 application/config/mercadopago.php
+application/logs
+
 .buildpath
 .project
 .settings
