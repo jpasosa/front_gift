@@ -174,7 +174,7 @@ class Home extends CI_Controller {
 
 	public function gracias()
 	{
-		// $data = array();
+		$data = array();
 
 		// $data_mp['collection_id'] = $this->input->get('collection_id');
 		// $data_mp['collection_status'] = $this->input->get('collection_status');
