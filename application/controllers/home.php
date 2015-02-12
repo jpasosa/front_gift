@@ -196,8 +196,13 @@ class Home extends CI_Controller {
 	public function test_log()
 	{
 
+		$data_mp['collection_id'] = 'pepe';
+		$data_mp['collection_status'] = 'pepeus';
+		$data_mp['preference_id'] = 'pepe';
+		$data_mp['external_reference'] = 'pepe';
 
-		log_message('info',  'testeo que entre correctamente en los logs. . ');
+		$error_pay = print_r($data_mp, TRUE);
+		log_message('error',  $error_pay);
 		die();
 
 	}
