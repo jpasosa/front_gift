@@ -69,6 +69,21 @@ class Home extends CI_Controller {
 					//$this->mercadopago->sandbox_mode('TRUE');
 
 					$preferenceResult = $this->mercadopago->create_preference($preference);
+
+					//
+					// Debagueo un objeto / arreglo / variable
+					//
+					echo ' <br/> <div style="font-weight: bold; color: green;"> $preferenceResult: </div> <pre>' ;
+					echo '<div style="color: #3741c6;">';
+					if(is_array($preferenceResult)) {
+					    print_r($preferenceResult);
+					}else {
+					var_dump($preferenceResult);
+					}
+					echo '</div>';
+					echo '</pre>';
+					die('--FIN--DEBUGEO----');
+
 					//Obtenemos el access_token
 					$accessToken = $this->mercadopago->get_access_token();
 
