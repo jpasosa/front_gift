@@ -159,7 +159,7 @@
 											</div>
 										<?php else: ?>
 											<div class="form-row">
-												<a href="<?php echo $preferenceResult["response"]["init_point"]; ?>" name="MP-Checkout" style="background-color:#000 important!; color:#fff;" class="ar-arall">Pagar</a>
+												<a href="<?php echo $preferenceResult["response"]["init_point"]; ?>" name="MP-Checkout" class="red-L-Rn">Pagar</a>
 												<script type="text/javascript" src="http://mp-tools.mlstatic.com/buttons/render.js"></script>
 											</div>
 										<?php endif; ?>
