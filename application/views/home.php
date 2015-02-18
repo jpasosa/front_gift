@@ -483,7 +483,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#791212', end
 </div>
 <!-- End content -->
 <div class="clearfix"></div>
->>>>>>> 8f6c216167569edf29490b6d35f62cff8ecf55ff
 </div>
 
 <!--[if lte IE 7]><script src="js/icons-lte-ie7.js"></script><![endif]-->
