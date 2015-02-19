@@ -54,7 +54,7 @@ class Home extends CI_Controller {
 					// Recogo todos los datos para enviar por mercadopago
 					$items = $this->gift_model->get_gifts_for_mc($gift['IdVenta']);
 					$preference['items'] 				= $items;
-					$preference['external_reference'] 	= 	25;
+					$preference['external_reference'] 	= 	$gift['IdVenta'];
 					$preference['back_urls'] 			= array("success" => 'http://ximenapaparella.com.ar/front_gift/home/gracias');
 					//$this->mercadopago->sandbox_mode('TRUE');
 					$preferenceResult = $this->mercadopago->create_preference($preference);
