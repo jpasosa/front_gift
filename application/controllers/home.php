@@ -76,9 +76,6 @@ class Home extends CI_Controller {
 		$data['fecha_venc']= date('d-m-Y', strtotime("+90 days"));
 		$data['servicios'] 	= $this->servicios_model->get_all();
 
-		log_message('info',  'pepe');
-
-
 		$this->load->view('home', $data);
 	}
 
@@ -96,6 +93,7 @@ class Home extends CI_Controller {
 
 		$payment_info = $this->mercadopago->get_payment_info ($_GET["id"]);
 
+		log_message('info',  print_r($payment_info));
 		// Show payment information
 		if ($payment_info["status"] == 200)
 		{
