@@ -94,6 +94,10 @@ class Home extends CI_Controller {
 		$payment_info = $this->mercadopago->get_payment_info ($_GET["id"]);
 
 		log_message('info',  print_r($payment_info));
+
+		$error_pay = print_r($payment_info, TRUE);
+-		log_message('error',  $error_pay);
+
 		// Show payment information
 		if ($payment_info["status"] == 200)
 		{
