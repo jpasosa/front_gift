@@ -76,6 +76,8 @@ class Home extends CI_Controller {
 		$data['fecha_venc']= date('d-m-Y', strtotime("+90 days"));
 		$data['servicios'] 	= $this->servicios_model->get_all();
 
+		log_message('info',  'pepe');
+
 
 		$this->load->view('home', $data);
 	}
